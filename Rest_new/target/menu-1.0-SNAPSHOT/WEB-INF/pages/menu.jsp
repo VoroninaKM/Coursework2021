@@ -22,17 +22,9 @@
             <td>${item.title}</td>
             <td>${item.price}</td>
             <td>${item.grams}</td>
-            <td>
-                <a href="/edit/${item.id}">edit</a>
-                <a href="/delete/${item.id}">delete</a>
-            </td>
         </tr>
     </c:forEach>
 </table>
-
-<h2>Add</h2>
-<c:url value="/add" var="add"/>
-<a href="${add}">Add new film</a>
 
 </body>
 </html>

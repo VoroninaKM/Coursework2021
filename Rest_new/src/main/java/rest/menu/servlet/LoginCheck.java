@@ -25,13 +25,16 @@ public class LoginCheck extends HttpServlet {
         p = request.getParameter("password");
 
         if(u.equals("admin") && p.equals("pass")){
-            String path = "/edit";
+            String path = "/places";
             ServletContext servletContext = getServletContext();
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
             requestDispatcher.forward(request, response);
         }
         else {
-            out.print("<h1> gggg </h1>");
+            String path = "/";
+            ServletContext servletContext = getServletContext();
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
+            requestDispatcher.forward(request, response);
         }
     }
 }

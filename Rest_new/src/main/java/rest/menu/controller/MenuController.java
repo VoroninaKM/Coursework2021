@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import rest.menu.model.Item;
+import rest.menu.model.Place;
 import rest.menu.service.*;
 import rest.menu.dao.*;
 
@@ -18,12 +19,26 @@ import java.util.List;
 public class MenuController {
 
     private MenuService menuService;
-
     @Autowired
     public void setMenuService(MenuService menuService) {
         this.menuService = menuService;
     }
 
+    private PlaceService placeService;
+    @Autowired
+    public void setMenuService(PlaceService placeService) {
+        this.placeService = placeService;
+    }
+
+
+    @RequestMapping(value = "/places", method = RequestMethod.GET)
+    public ModelAndView allPlaces() {
+        List<Place> places = placeService.allItems();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("places.jsp");
+        modelAndView.addObject("placesList", places);
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView Login() {
@@ -41,12 +56,12 @@ public class MenuController {
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    /*@RequestMapping(method = RequestMethod.GET)
     public ModelAndView Menu() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("menu.jsp");
         return modelAndView;
-    }
+    }*/
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView editPage() {
